@@ -23,8 +23,6 @@ See [examples folder](./examples).
 
 Password rotation is enabled by supplying `var.password_rotation_days`, which then depends on `var.rotator_lambda_role_name` also being supplied. This role should contain the following permissions:
 
-The `arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole` policy
-
 The `arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole` policy
 
 The following policy:
@@ -41,24 +39,14 @@ The following policy:
       ],
       "Resource": "*",
       "Effect": "Allow"
-    }
-  ]
-},
-
-{
-  "Statement": [
+    },
     {
       "Action": [
         "rds:DescribeDBInstances" # Needed for the Lambda that will create the additional users
       ],
       "Resource": "*",
       "Effect": "Allow"
-    }
-  ]
-},
-
-{
-  "Statement": [
+    },
     {
       "Condition": {
         "StringEquals": {
@@ -73,6 +61,7 @@ The following policy:
         "secretsmanager:PutSecretValue",
         "secretsmanager:UpdateSecretVersionStage"
       ],
+      # TODO: Get correct secret name
       "Resource": "arn:aws:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:*",
       "Effect": "Allow"
     },

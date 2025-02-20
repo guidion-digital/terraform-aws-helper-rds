@@ -60,7 +60,7 @@ module "rds_mysql_password_rotator_lambda" {
   count = var.password_rotation_days != null ? 1 : 0
 
   source  = "app.terraform.io/guidion/app-lambda/aws"
-  version = "0.0.9"
+  version = "0.0.10"
 
   application_name            = var.application_name
   stage                       = var.stage
@@ -71,7 +71,7 @@ module "rds_mysql_password_rotator_lambda" {
   lambdas = {
     "rds-mysql-password-rotator" = {
       description = "RDS MySQL Password Rotator"
-      source_dir  = "${path.module}/lambdas/rds-mysql-password-rotator"
+      source_dir  = "${path.module}/lambdas/rds-mysql-secret-rotator"
       runtime     = "python3.11"
       handler     = "main.handler"
       lambda_role = var.rotator_lambda_role_name
@@ -83,7 +83,7 @@ module "rds_mysql_password_rotator_lambda" {
       }
 
       vpc_subnet_ids         = var.subnet_ids
-      vpc_security_group_ids = var.vpc_security_group_ids
+      vpc_security_group_ids = local.vpc_security_group_ids
 
       environment_variables = {
         EXCLUDE_CHARACTERS         = "/@\"'"
