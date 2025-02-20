@@ -35,7 +35,12 @@ output "mysql_proxy_arn" {
 
 output "mysql_proxy_endpoint" {
   description = "The endpoint that you can use to connect to the proxy"
-  value       = try(module.mysql_rds_proxy[0].endpoints, null)
+  value       = try(module.mysql_rds_proxy[0].proxy_endpoint, null)
+}
+
+output "mysql_proxy_endpoints" {
+  description = "Array containing the full resource object and attributes for all DB proxy endpoints created"
+  value       = try(module.mysql_rds_proxy[0].db_proxy_endpoints, null)
 }
 
 output "mysql_db_name" {
