@@ -5,6 +5,7 @@ variable "project" {}
 variable "stage" {}
 variable "application_name" {}
 variable "username" {}
+variable "rotator_lambda_role_name" {}
 
 module "rds_mysql" {
   source = "../../"
@@ -26,9 +27,9 @@ module "rds_mysql" {
     enabled = true
   }
 
-  username = var.username
-  # WIP: Enable when ready to test password rotation
-  # password_rotation_days = 1
+  username                 = var.username
+  password_rotation_days   = 1
+  rotator_lambda_role_name = var.rotator_lambda_role_name
 
   vpc_id     = var.vpc_id
   vpc_cidr   = var.vpc_cidr
