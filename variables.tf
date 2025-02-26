@@ -186,7 +186,7 @@ variable "create_db_parameter_group" {
 variable "create_monitoring_role" {
   description = "Create a monitoring role"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "username" {
@@ -412,6 +412,8 @@ variable "proxy_settings" {
     require_tls                  = optional(bool, true)         # Whether to require TLS for the proxy
     idle_client_timeout          = optional(number, 1800)       # The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it
     role_arn                     = optional(string, "")         # ARN of the IAM role that the proxy uses to access secrets in AWS Secrets Manager
+    create_iam_policy            = optional(bool, false)        # Whether to create an IAM policy for the proxy
+    create_iam_role              = optional(bool, false)        # Whether to create an IAM role for the proxy
     connection_borrow_timeout    = optional(number, null)       # Number of seconds for a proxy to wait for a connection to become available in the connection pool
     init_query                   = optional(string, "")         # One or more SQL statements for the proxy to run when opening each new database connection
     max_connections_percent      = optional(number, 90)         # The maximum size of the connection pool for each target in a target group

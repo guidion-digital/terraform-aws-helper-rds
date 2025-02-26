@@ -158,7 +158,6 @@ module "mysql_rds_proxy" {
   target_db_instance     = true
   db_instance_identifier = var.identifier
 
-  iam_role_name          = "${var.identifier}-rds-proxy"
   vpc_subnet_ids         = var.subnet_ids
   vpc_security_group_ids = local.vpc_security_group_ids
   require_tls            = var.proxy_settings.require_tls
