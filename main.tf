@@ -162,6 +162,9 @@ module "mysql_rds_proxy" {
   vpc_security_group_ids = local.vpc_security_group_ids
   require_tls            = var.proxy_settings.require_tls
 
+  create_iam_policy = var.proxy_settings.create_iam_policy
+  create_iam_role   = var.proxy_settings.create_iam_role
+
   endpoints = {
     read_write = {
       name                   = "${var.identifier}-read-write"
