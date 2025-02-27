@@ -43,6 +43,11 @@ output "mysql_proxy_endpoints" {
   value       = try(module.mysql_rds_proxy[0].db_proxy_endpoints, null)
 }
 
+output "mysql_proxy_id" {
+  description = "The ID of the proxy"
+  value       = try(module.mysql_rds_proxy[0].proxy_id, null)
+}
+
 output "mysql_db_name" {
   description = "Name of the database"
   value       = local.db_name
