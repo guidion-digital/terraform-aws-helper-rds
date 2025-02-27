@@ -64,5 +64,5 @@ locals {
 
 output "mysql_proxy_user_arn" {
   description = "ARN for the proxy user"
-  value       = module.mysql_rds_proxy[0].proxy_arn
+  value       = split(":", module.mysql_rds_proxy[0].proxy_arn)[-1]
 }
