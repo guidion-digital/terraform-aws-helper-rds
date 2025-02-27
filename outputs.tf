@@ -30,7 +30,7 @@ output "mysql_replica_instance_name" {
 
 output "mysql_proxy_arn" {
   description = "The Amazon Resource Name (ARN) for the proxy"
-  value       = try(module.mysql_rds_proxy[0].arn, null)
+  value       = try(module.mysql_rds_proxy[0].proxy_arn, null)
 }
 
 output "mysql_proxy_endpoint" {
@@ -58,11 +58,11 @@ data "aws_region" "current" {}
 
 locals {
   # arn:aws:rds:eu-central-1:001903534230:db-proxy:prx-07c89e7672c3ac84c
-  proxy_real_id  = try(split(":", module.mysql_rds_proxy[0].arn)[-1], null)
+  proxy_real_id  = try(split(":", module.mysql_rds_proxy[0].proxy_arn)[-1], null)
   proxy_user_arn = try("arn:aws:rds-db:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:dbuser:${local.proxy_real_id}/*", null)
 }
 
 output "mysql_proxy_user_arn" {
   description = "ARN for the proxy user"
-  value       = "arn=${module.mysql_rds_proxy[0].arn} proxy_user_arn=${local.proxy_user_arn}"
+  value       = "arn=${module.mysql_rds_proxy[0].proxy_arn} proxy_user_arn=${local.proxy_user_arn}"
 }
