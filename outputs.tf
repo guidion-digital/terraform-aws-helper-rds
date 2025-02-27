@@ -44,11 +44,24 @@ output "mysql_proxy_endpoints" {
 }
 
 output "mysql_proxy_id" {
-  description = "The ID of the proxy"
+  description = "ID of the proxy"
   value       = try(module.mysql_rds_proxy[0].proxy_id, null)
 }
 
 output "mysql_db_name" {
   description = "Name of the database"
   value       = local.db_name
+}
+
+data "aws_caller_identity" "current" {}
+data "aws_region" "current" {}
+
+locals {
+  proxy_real_id  = try(split(":", module.mysql_rds_proxy[0].mysql_proxy_arn)[-1], null)
+  proxy_user_arn = try("arn:aws:rds-db:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:dbuser:${local.proxy_real_id}/*", null)
+}
+
+output "mysql_proxy_user_arn" {
+  description = "ARN for the proxy user"
+  value       = local.proxy_user_arn
 }
