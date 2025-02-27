@@ -411,6 +411,7 @@ variable "proxy_settings" {
     enabled                      = optional(bool, true)         # Whether to enable the proxy
     require_tls                  = optional(bool, true)         # Whether to require TLS for the proxy
     idle_client_timeout          = optional(number, 1800)       # The number of seconds that a connection to the proxy can be inactive before the proxy disconnects it
+    iam_role_name                = optional(string, null)       # Name of the IAM role that the proxy uses to access secrets in AWS Secrets Manager
     role_arn                     = optional(string, "")         # ARN of the IAM role that the proxy uses to access secrets in AWS Secrets Manager
     create_iam_policy            = optional(bool, false)        # Whether to create an IAM policy for the proxy
     create_iam_role              = optional(bool, false)        # Whether to create an IAM role for the proxy

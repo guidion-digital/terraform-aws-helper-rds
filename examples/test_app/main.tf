@@ -6,6 +6,7 @@ variable "stage" {}
 variable "application_name" {}
 variable "username" {}
 variable "rotator_lambda_role_name" {}
+variable "rds_proxy_role_arn" {}
 
 module "rds_mysql" {
   source = "../../"
@@ -21,7 +22,7 @@ module "rds_mysql" {
 
   proxy_settings = {
     enabled  = true
-    role_arn = var.rds_proxy_role
+    role_arn = var.rds_proxy_role_arn
   }
 
   replica_settings = {
