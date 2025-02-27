@@ -6,6 +6,7 @@ variable "stage" {}
 variable "application_name" {}
 variable "username" {}
 variable "rotator_lambda_role_name" {}
+variable "rds_proxy_role_arn" {}
 
 module "rds_mysql" {
   source = "../../"
@@ -20,16 +21,18 @@ module "rds_mysql" {
   purge_on_delete = true
 
   proxy_settings = {
-    enabled = true
+    enabled  = true
+    role_arn = var.rds_proxy_role_arn
   }
 
   replica_settings = {
     enabled = true
   }
 
-  username                 = var.username
-  password_rotation_days   = 1
-  rotator_lambda_role_name = var.rotator_lambda_role_name
+  username               = var.username
+  password_rotation_days = 1
+  # Not ready yet
+  # rotator_lambda_role_name = var.rotator_lambda_role_name
 
   vpc_id     = var.vpc_id
   vpc_cidr   = var.vpc_cidr
