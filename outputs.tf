@@ -64,5 +64,5 @@ locals {
 
 output "mysql_proxy_user_arn" {
   description = "ARN for the proxy user"
-  value       = "arn=${module.mysql_rds_proxy[0].proxy_arn} proxy_user_arn=${local.proxy_user_arn}"
+  value       = module.mysql_rds_proxy[0].proxy_arn
 }
