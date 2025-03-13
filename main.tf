@@ -83,8 +83,8 @@ module "rds_mysql" {
     update = var.timeouts_update
   }
 
-  db_instance_tags = local.tags.tags
-  tags             = local.tags.tags
+  db_instance_tags = local.tags
+  tags             = local.tags
 }
 
 module "rds_mysql_replica" {
@@ -148,8 +148,8 @@ module "rds_mysql_replica" {
     update = var.replica_settings.timeouts_update == null ? var.timeouts_update : var.replica_settings.timeouts_update
   }
 
-  db_instance_tags = local.tags.tags
-  tags             = local.tags.tags
+  db_instance_tags = local.tags
+  tags             = local.tags
 }
 
 module "mysql_rds_proxy" {
@@ -195,6 +195,6 @@ module "mysql_rds_proxy" {
   max_idle_connections_percent = var.proxy_settings.max_idle_connections_percent
   session_pinning_filters      = var.proxy_settings.session_pinning_filters
 
-  proxy_tags = local.tags.tags
-  tags       = local.tags.tags
+  proxy_tags = local.tags
+  tags       = local.tags
 }
