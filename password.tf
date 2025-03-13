@@ -23,7 +23,7 @@ module "rds_password_secret" {
     }
   }
 
-  tags = module.these_tags.tags
+  tags = local.tags
 }
 
 locals {

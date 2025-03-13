@@ -15,6 +15,10 @@ module "rds_mysql" {
   project          = var.project
   stage            = var.stage
 
+  additional_tags = {
+    "extra" = "spicey"
+  }
+
   identifier      = "test-db"
   engine          = "mysql"
   multi_az        = false

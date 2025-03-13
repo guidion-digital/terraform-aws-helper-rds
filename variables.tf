@@ -13,6 +13,12 @@ variable "stage" {
   type        = string
 }
 
+variable "additional_tags" {
+  description = "Additional tags to apply to all resources"
+  type        = map(string)
+  default     = {}
+}
+
 variable "allocated_storage" {
   description = "The amount of storage (in GB) to allocate for the RDS instance"
   type        = number
