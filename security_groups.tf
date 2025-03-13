@@ -7,7 +7,7 @@ resource "aws_security_group" "this" {
   description = "Security group for RDS instances"
   vpc_id      = var.vpc_id
 
-  tags = module.these_tags.tags
+  tags = local.tags.tags
 }
 
 resource "aws_vpc_security_group_ingress_rule" "mysql" {
