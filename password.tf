@@ -1,5 +1,5 @@
 locals {
-  secret_name = "applications/${var.application_name}/${var.identifier}-rds-password"
+  secret_name = "/applications/${var.application_name}/${var.identifier}-rds-password"
 }
 
 resource "random_password" "password" {
