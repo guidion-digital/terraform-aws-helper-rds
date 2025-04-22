@@ -155,6 +155,8 @@ module "rds_mysql_replica" {
 module "mysql_rds_proxy" {
   source = "terraform-aws-modules/rds-proxy/aws"
 
+  depends_on = [module.rds_mysql]
+
   count = var.engine == "mysql" && var.proxy_settings.enabled ? 1 : 0
 
   name                   = var.identifier
