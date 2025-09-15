@@ -27,13 +27,15 @@ module "rds_mysql" {
 
   identifier = var.identifier
 
-  db_name              = local.db_name
-  engine               = "mysql"
-  engine_version       = var.engine_version
-  family               = var.family
-  major_engine_version = var.major_engine_version
-  ca_cert_identifier   = var.ca_cert_identifier
-  port                 = var.port
+  db_name                     = local.db_name
+  engine                      = "mysql"
+  engine_version              = var.engine_version
+  auto_minor_version_upgrade  = var.auto_minor_version_upgrade
+  allow_major_version_upgrade = var.allow_major_version_upgrade
+  family                      = var.family
+  major_engine_version        = var.major_engine_version
+  ca_cert_identifier          = var.ca_cert_identifier
+  port                        = var.port
 
   instance_class        = var.instance_class
   allocated_storage     = var.allocated_storage
