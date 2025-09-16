@@ -121,12 +121,6 @@ variable "blue_green_update" {
   default     = false
 }
 
-variable "blue_green_update" {
-  description = "Enables low-downtime updates using RDS Blue/Green deployments"
-  type        = map(string)
-  default     = {}
-}
-
 variable "ca_cert_identifier" {
   description = "Specifies the identifier of the CA certificate for the DB instance"
   type        = string
