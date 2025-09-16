@@ -50,7 +50,7 @@ module "rds_mysql" {
   publicly_accessible                   = var.publicly_accessible
   apply_immediately                     = var.apply_immediately
   multi_az                              = var.multi_az
-  blue_green_update                     = { enabled = var.blue_green_update }
+  blue_green_update                     = var.blue_green_update ? { enabled = var.blue_green_update } : null
   skip_final_snapshot                   = local.skip_final_snapshot
   copy_tags_to_snapshot                 = var.copy_tags_to_snapshot
   performance_insights_enabled          = var.performance_insights_enabled
