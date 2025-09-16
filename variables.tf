@@ -116,6 +116,12 @@ variable "multi_az" {
 }
 
 variable "blue_green_update" {
+  description = "Maintain blue/green instances for manual failover (for example, during major version upgrades)"
+  type        = bool
+  default     = false
+}
+
+variable "blue_green_update" {
   description = "Enables low-downtime updates using RDS Blue/Green deployments"
   type        = map(string)
   default     = {}
