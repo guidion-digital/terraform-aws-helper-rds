@@ -37,7 +37,7 @@ variable "storage_encrypted" {
   default     = true
 }
 
-variable "allow_major_engine_version_upgrade" {
+variable "allow_major_version_upgrade" {
   description = "Indicates that major version upgrades are allowed. Changing this parameter does not result in an outage and the change is asynchronously applied as soon as possible"
   type        = bool
   default     = false
@@ -116,9 +116,9 @@ variable "multi_az" {
 }
 
 variable "blue_green_update" {
-  description = "Enables low-downtime updates using RDS Blue/Green deployments"
-  type        = map(string)
-  default     = {}
+  description = "Maintain blue/green instances for manual failover (for example, during major version upgrades)"
+  type        = bool
+  default     = false
 }
 
 variable "ca_cert_identifier" {
@@ -301,7 +301,7 @@ variable "engine" {
 variable "engine_version" {
   description = "The engine version to use"
   type        = string
-  default     = "8.0.36"
+  default     = null
 }
 
 variable "family" {
