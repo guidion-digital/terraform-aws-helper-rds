@@ -1,12 +1,6 @@
-variable "vpc_id" {}
-variable "vpc_cidr" {}
-variable "subnet_ids" {}
-variable "project" {}
-variable "stage" {}
-variable "application_name" {}
-variable "username" {}
-variable "rotator_lambda_role_name" {}
-variable "rds_proxy_role_arn" {}
+variable "project" { default = "constr" }
+variable "stage" { default = "localstack" }
+variable "application_name" { default = "foobar" }
 
 module "rds_mysql" {
   source = "../../"
@@ -26,21 +20,18 @@ module "rds_mysql" {
 
   proxy_settings = {
     enabled  = true
-    role_arn = var.rds_proxy_role_arn
+    role_arn = aws_iam_role.rds_proxy.arn
   }
 
   replica_settings = {
     enabled = true
   }
 
-  username               = var.username
-  password_rotation_days = 1
-  # Not ready yet
-  # rotator_lambda_role_name = var.rotator_lambda_role_name
+  username = "holden"
 
-  vpc_id     = var.vpc_id
-  vpc_cidr   = var.vpc_cidr
-  subnet_ids = var.subnet_ids
+  vpc_id     = module.vpc.vpc_attributes.id
+  vpc_cidr   = module.vpc.vpc_attributes.cidr_block
+  subnet_ids = [for _, value in module.vpc.private_subnet_attributes_by_az : value.id]
 
   allow_vpc_cidr = true
 }

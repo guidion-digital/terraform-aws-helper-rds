@@ -2,11 +2,6 @@ Part of the [Terrappy framework](https://github.com/guidion-digital/terrappy).
 
 ---
 
-# TODO:
-
-- Fix example
-- Create workflows for releases
-
 # Usage
 
 See [examples folder](./examples).
