@@ -156,7 +156,8 @@ module "rds_mysql_replica" {
 }
 
 module "mysql_rds_proxy" {
-  source = "terraform-aws-modules/rds-proxy/aws"
+  source  = "terraform-aws-modules/rds-proxy/aws"
+  version = "v3.2.1"
 
   depends_on = [module.rds_mysql]
 
