@@ -2,11 +2,6 @@ Part of the [Terrappy framework](https://github.com/guidion-digital/terrappy).
 
 ---
 
-# TODO:
-
-- Fix example
-- Create workflows for releases
-
 # Usage
 
 See [examples folder](./examples).
@@ -24,7 +19,9 @@ See [examples folder](./examples).
 ## WIP: Permissions for Secrets Rotation
 
 > [!WARNING]
-> Password rotation is 100% not ready for even testing yet. _Do not set var.password_rotation_days_
+> Password rotation is 100% not ready for even testing yet. The code that acts when var.password_rotation_days has therefore been commented out to avoid unintended consequences if it were set accidentally.
+>
+> Everything in this section is a WIP, and is not true until this note has been removed.
 
 Password rotation is enabled by supplying `var.password_rotation_days`, which then depends on `var.rotator_lambda_role_name` also being supplied. This role should contain the following permissions:
 
