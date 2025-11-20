@@ -7,7 +7,7 @@ module "vpc" {
 
   name       = var.application_name
   cidr_block = "10.254.254.0/24"
-  az_count   = 1
+  az_count   = 2
 
   subnets = {
     private = {
