@@ -19,7 +19,7 @@ module "rds_mysql" {
 
   identifier      = "test-db"
   engine          = "mysql"
-  multi_az        = false
+  multi_az        = true
   purge_on_delete = true
 
   proxy_settings = {
