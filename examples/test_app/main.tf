@@ -2,6 +2,10 @@ variable "project" { default = "constr" }
 variable "stage" { default = "localstack" }
 variable "application_name" { default = "foobar" }
 
+provider "aws" {
+  region = "eu-central-1"
+}
+
 module "rds_mysql" {
   source = "../../"
 
