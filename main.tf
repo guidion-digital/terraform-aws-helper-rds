@@ -157,7 +157,7 @@ module "rds_mysql_replica" {
 
 module "mysql_rds_proxy" {
   source  = "terraform-aws-modules/rds-proxy/aws"
-  version = "v3.2.1"
+  version = "~> 4.0"
 
   depends_on = [module.rds_mysql]
 
@@ -187,9 +187,11 @@ module "mysql_rds_proxy" {
 
   auth = {
     "superuser" = {
-      description = "RDS password for ${var.identifier}"
-      secret_arn  = module.rds_password_secret.arns[local.secret_name]
-      iam_auth    = var.proxy_settings.iam_auth
+      auth_scheme               = var.proxy_settings.auth_scheme
+      client_password_auth_type = var.proxy_settings.auth_client_password_auth_type
+      description               = "RDS password for ${var.identifier}"
+      iam_auth                  = var.proxy_settings.iam_auth
+      secret_arn                = module.rds_password_secret.arns[local.secret_name]
     }
   }
 

@@ -53,7 +53,7 @@ The following policy:
       "Condition": {
         "StringEquals": {
           # TODO: Get correct function name
-          "secretsmanager:resource/AllowRotationLambdaArn": "arn:aws:lambda:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:function:SecretsManagerapp-x-mysql-secret-rotator"
+          "secretsmanager:resource/AllowRotationLambdaArn": "arn:aws:lambda:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:function:SecretsManagerapp-x-mysql-secret-rotator"
         }
       },
       # TODO: These need to be separated so the resources can be namespaced
@@ -64,7 +64,7 @@ The following policy:
         "secretsmanager:UpdateSecretVersionStage"
       ],
       # TODO: Get correct secret name
-      "Resource": "arn:aws:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:*",
+      "Resource": "arn:aws:secretsmanager:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:secret:*",
       "Effect": "Allow"
     },
     {

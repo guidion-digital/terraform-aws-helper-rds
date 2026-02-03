@@ -46,7 +46,7 @@ data "aws_iam_policy_document" "rds_proxy" {
     condition {
       test     = "StringEquals"
       variable = "kms:ViaService"
-      values   = ["secretsmanager.${data.aws_region.current.name}.amazonaws.com"]
+      values   = ["secretsmanager.${data.aws_region.current.region}.amazonaws.com"]
     }
   }
 
@@ -70,7 +70,7 @@ data "aws_iam_policy_document" "rds_proxy" {
       "secretsmanager:DescribeSecret"
     ]
     resources = [
-      "arn:aws:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:constr/${var.application_name}-rds-password-*"
+      "arn:aws:secretsmanager:${data.aws_region.current.region}:${data.aws_caller_identity.current.account_id}:secret:constr/${var.application_name}-rds-password-*"
     ]
   }
 }
