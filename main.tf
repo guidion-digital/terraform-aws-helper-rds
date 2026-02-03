@@ -188,7 +188,7 @@ module "mysql_rds_proxy" {
   auth = {
     "superuser" = {
       auth_scheme               = var.proxy_settings.auth_scheme
-      client_password_auth_type = var.proxy_settings.client_password_auth_type
+      client_password_auth_type = var.proxy_settings.auth_client_password_auth_type
       description               = "RDS password for ${var.identifier}"
       iam_auth                  = var.proxy_settings.iam_auth
       secret_arn                = module.rds_password_secret.arns[local.secret_name]
