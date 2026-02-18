@@ -307,13 +307,13 @@ variable "engine_version" {
 variable "family" {
   description = "The family of the DB parameter group"
   type        = string
-  default     = "mysql8.0"
+  default     = "mysql8.4"
 }
 
 variable "major_engine_version" {
   description = "The major engine version to use"
   type        = string
-  default     = "8.0"
+  default     = "8.4"
 }
 
 variable "port" {
